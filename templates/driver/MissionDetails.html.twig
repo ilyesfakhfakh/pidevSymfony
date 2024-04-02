@@ -1,0 +1,95 @@
+{% extends 'baseBack.html.twig' %}
+
+
+
+{% block sidepanel %} 
+ <div id="app-sidepanel" class="app-sidepanel"> 
+	        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+	        <div class="sidepanel-inner d-flex flex-column">
+		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+		        <div class="app-branding">
+		            <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="{{asset('Back/assets/images/logoW.png')}}" alt="logo"><span class="logo-text" style="color:#563d2d" >WasteWise</span></a>
+	
+		        </div><!--//app-branding--> 
+                <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+					    <li class="nav-item">
+					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+					        <a class="nav-link active" href="index.html">
+						        <span class="nav-icon">
+						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		  <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"/>
+		  <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+		</svg>
+						         </span>
+		                         <span class="nav-link-text">Overview</span>
+							
+					        </a><!--//nav-link-->
+
+					    </li><!--//nav-item-->
+
+</div>
+
+{%endblock%}
+
+
+
+{% block body %}
+
+    {% block css %}
+        <link id="theme-style" rel="stylesheet" href="{{asset('Back/assets/css/portal.css')}}">
+    {% endblock %}
+
+    <div class="app-wrapper">
+        <div class="app-content pt-3 p-md-3 p-lg-4">
+            <div class="container-xl">
+                <div class="row g-3 mb-4 align-items-center justify-content-between">
+                    <!-- ... -->
+                </div>
+
+                <div class="tab-content" id="orders-table-tab-content">
+                    <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+                        <div class="app-card app-card-orders-table shadow-sm mb-5">
+                            <div class="app-card-body">
+                                <div class="table-responsive">
+                                    <table class="table app-table-hover text-left">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th class="cell">Start Date</th>
+                                                <th class="cell">End Date</th>
+                                                <th class="cell">Location</th>
+                                                <th class="cell">Waste Type</th>
+                                                <th class="cell">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for mission in missions %}
+                                                <tr>
+                                                    
+                                                    
+                <td>{{ mission.startDate ? mission.startDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ mission.endDate ? mission.endDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ mission.location }}</td>
+                <td>{{ mission.typeD }}</td>
+                {% if mission.status=="completed" %}
+                <td><span class="badge bg-warning">{{ mission.status }}</span></td>
+                {%else %}
+                <td><span class="badge bg-danger">{{ mission.status }}</span></td>
+				{% endif %}
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!--//app-card-body-->
+                        </div><!--//app-card-->
+                    </div><!--//tab-pane-->
+                </div><!--//tab-content-->
+            </div><!--//container-fluid-->
+        </div><!--//app-content-->
+    </div><!--//app-wrapper-->
+
+{% endblock %}
+
+    

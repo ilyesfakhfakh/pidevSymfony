@@ -1,0 +1,172 @@
+{% extends 'baseBack.html.twig' %}
+
+
+
+
+
+{% block body %}
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+    }
+
+    .pagination li {
+        display: inline-block;
+        margin: 0 5px;
+    }
+
+    .pagination a {
+        display: block;
+        padding: 5px 10px;
+        background-color: #f2f2f2;
+        text-decoration: none;
+        color: green;
+        border-radius: 5px;
+    }
+
+    .pagination a:hover {
+        background-color: #ddd;
+    }
+
+    .pagination .active a {
+        background-color: #563d2d;
+        color: #fff;
+    }
+
+    .pagination .active a:hover {
+        background-color: green;
+    }
+
+    .pagination .disabled {
+        color: #999;
+        cursor: not-allowed;
+    }
+
+   
+
+ 
+
+</style>
+
+<div class="app-wrapper">
+
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <div class="row g-3 mb-4 align-items-center justify-content-between">
+                <div class="col-auto">
+                    <h1>Table of Waste</h1>
+                </div>
+
+
+                <div class="col-auto">
+                    <div class="input__container input__container--variant d-flex justify-content-end">
+                        <div class="shadow__input shadow__input--variant"></div>
+                   
+                    </div>
+                </div>
+            </div>
+
+			  <form class="form" action="{{ path('search') }}" method="get">
+  
+  <form id="searchForm" action="{{ path('search') }}" method="get">
+<select id="searchTerm" class="input" onchange="filterTable()" required>
+        <option value="" selected disabled hidden>Select a waste type</option>
+        <option value="paper">Paper</option>
+        <option value="plastic">Plastic</option>
+        <option value="metal">Metal</option>
+        <option value="organic waste">Organic</option>
+        <option value="glass">Glass</option>
+    </select>
+</form>
+
+</form>
+            <table id="wasteTable" class="table">
+                <thead>
+                    <tr>
+
+                        <th>Type</th>
+                        <th>Location</th>
+                        <th>Etat</th>
+                        <th>Quantite</th>
+                        <th>Truck</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+				
+                    {% for waste in wastes %}
+                    <tr>
+
+                        <td>{{ waste.type }}</td>
+                        <td>{{ waste.location }}</td>
+                        <td>{{ waste.etat }}</td>
+                        <td>{{ waste.quantite }}</td>
+                        <td>{{ waste.truck }}</td>
+
+                        <td>
+                            <a href="{{ path('app_waste_show', {'id': waste.id}) }}" class="badge bg-success">Show</a>
+                            <a href="{{ path('app_waste_edit', {'id': waste.id}) }}" class="badge bg-warning">Edit</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7">No records found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {{ knp_pagination_render(wastes) }}
+            <a href="{{ path('app_waste_new') }}" class="btn btn-primary">Create new</a>
+            <a href="{{ path('generate_pdf') }}" class="btn btn-danger">Create PDF</a>
+
+
+        </div>
+    </div>
+</div>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function filterTable() {
+    var searchTerm = document.getElementById("searchTerm").value.toLowerCase();
+    var tableRows = document.getElementById("wasteTable").getElementsByTagName("tr");
+
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+        var typeCell = row.getElementsByTagName("td")[0]; // Assuming the first column contains the waste type
+
+        if (typeCell) {
+            var type = typeCell.textContent.toLowerCase() || typeCell.innerText.toLowerCase();
+
+            console.log("Search Term:", searchTerm);
+            console.log("Type in Row:", type);
+
+            if (type === searchTerm || searchTerm === "") {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    }
+}
+
+   
+
+    
+</script>
+{% endblock %}

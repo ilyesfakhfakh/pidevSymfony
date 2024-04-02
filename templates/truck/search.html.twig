@@ -1,0 +1,52 @@
+    {% extends 'waste/index.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+<style>
+.search-results-container {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+</style>
+<div class="app-wrapper">
+	    
+	    <div class="app-content pt-3 p-md-3 p-lg-4">
+		    <div class="container-xl">
+			    
+			    <div class="row g-3 mb-4 align-items-center justify-content-between">
+				    <div class="col-auto">
+			            <h1 class="app-page-title mb-0">Search Results</h1>
+<div class="search-results-container">
+    <div class="search-results-container">
+        {% if trucks %}
+          <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Matricule</th>
+                <th>Disponibilite</th>  
+                <th>actions</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+        {% for truck in trucks %}
+            <tr>
+           
+                <td>{{ truck.matricule }}</td>
+                <td>{{ truck.disponibilite }}</td>
+                <td>
+                    <a href="{{ path('app_waste_show', {'id': truck.id}) }}" class="badge bg-success">show</a>
+                    <a href="{{ path('app_waste_edit', {'id': truck.id}) }}"class="badge bg-warning">edit</a>
+                </td>
+            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+{% endblock %}

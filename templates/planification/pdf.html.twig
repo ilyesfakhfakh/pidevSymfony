@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Planifications</title>
+</head>
+<body>
+    <h1>Liste des Planifications</h1>
+    <table border="1">
+        <tr>
+            <th>Id driver</th>
+            <th>Mission</th>
+            <th>Date</th>
+            <th>Location</th>
+        </tr>
+        {% for planification in planifications %}
+            <tr>
+                <td>{{ planification.idDriver }}</td>
+                <td>{{ planification.date ? planification.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ planification.location }}</td>
+                <td>{{ planification.getMission() }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

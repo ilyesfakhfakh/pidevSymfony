@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Waste{% endblock %}
+
+{% block body %}
+    <h1>Edit Waste</h1>
+
+    {{ include('waste/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_waste_index') }}">back to list</a>
+
+    {{ include('waste/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Waste{% endblock %}
+
+{% block body %}
+    <h1>Create new Waste</h1>
+
+    {{ include('waste/_form.html.twig') }}
+
+    <a href="{{ path('app_waste_index') }}">back to list</a>
+{% endblock %}

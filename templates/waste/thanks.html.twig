@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AI.Tech - Artificial Intelligence HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{{asset('Front/img/favicon.ico')}}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{asset('Front/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{asset('Front/css/style.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+     {% set successFlashMessages = app.session.flashBag.get('success') %}
+    {% if successFlashMessages is not empty %}
+        <div id="success-message" class="alert alert-success" role="alert">
+            {% for message in successFlashMessages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <script>
+        // Show the success message for 4 seconds
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var successMessage = document.getElementById('success-message');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 4000); // 4 seconds in milliseconds
+        });
+    </script>
+    <!-- Navbar Start -->
+    <div class="container-fluid sticky-top">
+        <div class="container">
+        
+            <nav class="navbar navbar-expand-lg navbar-dark p-0">
+                
+                <a href="" class="navbar-brand">
+                    <h1 class="text-white">Waste<span class="text-dark">.</span>Wise</h1>
+                </a>
+
+                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="/home" class="nav-item nav-link active">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="/stock/Recyclable/materials" class="nav-item nav-link" style="color: lightgreen;">Recyclable materials</a>
+                        <a href="project.html" class="nav-item nav-link">Projects</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <butaton type="button" class="btn text-white p-0 d-none d-lg-block" data-bs-toggle="modal"
+                        data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Hero Start -->
+    <div class="container-fluid pt-5 bg-primary hero-header">
+        <div class="container pt-1">
+            <div class="row g-5 pt-5">
+                <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                    <h1 class="display-4 mb-4 animated slideInRight" style="color: lightgreen;">Recyclable materials</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Recyclable materials</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-6 align-self-end text-center text-lg-end">
+                    <img class="img-fluid" src="img/hero-img.png" alt="" style="max-height: 300px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(20, 24, 62, 0.7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn btn-square bg-white btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-light p-3"
+                            placeholder="Type search keyword">
+                        <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+<!-- Contact Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="vh-70 d-flex align-items-center justify-content-center"">
+                <div class="col-md-4">
+                    <div class="border border-3 border-success"></div>
+                    <div class="card bg-white shadow p-5">
+                        <div class="mb-4 text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="75" height="75"
+                                fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                    d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                            </svg>
+                        </div>
+                        <div class="text-center">
+                            <h1>Thank You </h1>
+                            <p>Your order id added successfully</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                setTimeout(function () {
+                    window.location.href = "{{ path('app_stock_recyclable_materials') }}";
+                }, 3000);
+            </script>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function calculateTotal() {
+        var quantity = parseInt(document.getElementById('our_order_quantityO').value);
+        var stock = parseInt(document.getElementById('our_order_stock').value);
+        var total = quantity * stock;
+        document.getElementById('total').innerText = 'Total: ' + total;
+    }
+</script>
+
+<!-- Contact End -->
+
+ 
+<!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('Front/lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset('Front/lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('Front/lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('Front/lib/counterup/counterup.min.js')}}"></script>
+    <script src="{{asset('Front/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    
+
+    <!-- Template Javascript -->
+    <script src="{{asset('Front/js/main.js')}}"></script>
+    <style>
+    /* Add your CSS styles here */
+    #total {
+        font-size: 1.2rem;
+        margin-left: 10px; /* Adjust spacing between button and total */
+    }
+    .custom-gray-btn {
+    background-color: gray;
+    border-color: black;
+}
+
+.custom-gray-btn:hover {
+    background-color: gray;
+    border-color: black;
+}
+.custom-p-margin {
+    margin-bottom: 0 !important;
+}
+.error-message {
+    display: block; /* Display as block to make it appear on its own line */
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 5px 5px 0px;
+    margin-top: 2px; /* Adjust margin for smaller space between elements */
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 300px; /* Adjust the maximum width as needed */
+    /* Add more styles as needed */
+}
+
+
+
+
+</style>
+
+</body>
+
+</html>
